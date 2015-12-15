@@ -7,3 +7,4 @@
       R.td null, @props.question.content
       R.td null, @props.question.created_at
       R.td null, @props.replies
+      R.td null, @props.question.views

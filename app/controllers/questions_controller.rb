@@ -5,6 +5,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    Question.increment_counter(:views, params[:id])
     @question = Question.find(params[:id])
     @answers = Answer.where(question_id: params[:id])
   end

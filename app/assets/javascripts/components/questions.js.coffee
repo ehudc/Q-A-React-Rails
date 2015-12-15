@@ -34,6 +34,7 @@
               R.th null, 'Content'
               R.th null, 'Date'
               R.th null, 'Answers'
+              R.th null, 'Views'
           R.tbody null,
             for question in @state.questions by -1
               React.createElement Question, key: question.id, question: question, replies: @getAnswerCount(question.id)
