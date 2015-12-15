@@ -1,7 +1,7 @@
 @AnswerForm = React.createClass
   getInitialState: ->
-    title: ''
     content: ''
+    question_id: @props.related.id
 
   handleChange: (e) ->
     name = e.target.name
@@ -31,6 +31,10 @@
           name: 'content'
           value: @state.content
           onChange: @handleChange
+        R.input
+          type: 'hidden'
+          name: 'q_id'
+          value: @state.question_id
       R.button
         type: 'submit'
         className: 'btn btn-primary'

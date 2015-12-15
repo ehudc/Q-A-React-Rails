@@ -1,8 +1,4 @@
 class AnswersController < ApplicationController
-  def show
-    @answers = Answer.all
-  end
-
   def create
     @answer = Answer.new(answer_params)
 
@@ -16,6 +12,6 @@ class AnswersController < ApplicationController
   private
 
   def answer_params
-    params.require(:answer).permit(:content)
+    params.require(:answer).permit(:content, :question_id)
   end
 end

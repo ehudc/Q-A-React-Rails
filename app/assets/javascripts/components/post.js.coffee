@@ -4,6 +4,7 @@
     answers: @props.answers
   getDefaultProps: ->
     question: []
+    answers: []
 
   addAnswer: (a) ->
     if !@state.answers
@@ -31,15 +32,15 @@
       R.h2
         className: 'title'
         'Answers'
-      React.createElement AnswerForm, handleNewAnswer: @addAnswer
-      R.table
-        className: 'table table-bordered'
-        R.thead null,
-          R.tr null,
-            R.th null, 'Answer'
-        R.tbody null,
-          if @state.answers
-            for answer in @state.answers by -1
+      React.createElement AnswerForm, handleNewAnswer: @addAnswer, related: @props.question
+      if @state.answers.length
+        R.table
+          className: 'table table-bordered'
+          R.thead null,
+            R.tr null,
+              R.th null, 'Answer'
+          R.tbody null,
+            for answer in @state.answers
               React.createElement Answer, key: answer.id, answer: answer
-          else
-            "No Answers Yet!"
+      else
+        "No Answers Yet!"

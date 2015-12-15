@@ -1,11 +1,12 @@
 class QuestionsController < ApplicationController
   def index
     @questions = Question.all
+    @answers = Answer.all
   end
 
   def show
     @question = Question.find(params[:id])
-    @answers = Answer.all
+    @answers = Answer.where(question_id: params[:id])
   end
 
   def create
@@ -16,10 +17,6 @@ class QuestionsController < ApplicationController
     else
       render json: @question.errors, status: :bad_request
     end
-  end
-
-  def answers
-
   end
 
   private
