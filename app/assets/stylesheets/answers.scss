@@ -1,3 +1,36 @@
 // Place all the styles related to the Answers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.answer-list, .empty-results {
+  margin-top: 20px;
+}
+
+.vote-count {
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.arrow {
+  margin: 0px auto;
+  display: inline-block;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid green;
+}
+
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid blue;
+}

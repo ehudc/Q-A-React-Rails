@@ -9,9 +9,18 @@ class AnswersController < ApplicationController
     end
   end
 
+  def update
+    if params[:vote] == "1"
+      Answer.increment_counter(:votes, params[:id])
+    elsif params[:vote] == "-1"
+      Answer.decrement_counter(:votes, params[:id])
+    end
+    render json: Answer.find(params[:id])
+  end
+
   private
 
   def answer_params
-    params.require(:answer).permit(:content, :question_id)
+    params.require(:answer).permit(:content, :question_id, :votes)
   end
 end
