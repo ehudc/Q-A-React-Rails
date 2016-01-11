@@ -9,10 +9,9 @@
     e.preventDefault()
     $.ajax({
       url: "/answers/#{@props.answer.id}",
-      type: 'PUT',
+      type: 'PATCH',
       data: {vote: 1},
       success: (data) ->
-        console.log data
         self.props.handleVote data
     })
 
@@ -21,10 +20,9 @@
     e.preventDefault()
     $.ajax({
       url: "/answers/#{@props.answer.id}",
-      type: 'PUT',
+      type: 'PATCH',
       data: {vote: -1},
       success: (data) ->
-        console.log data
         self.props.handleVote data
     })
 

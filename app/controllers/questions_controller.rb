@@ -14,7 +14,17 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
 
     if @question.save
-      render json: @question
+      render json: @question, status: :created
+    else
+      render json: @question.errors, status: :bad_request
+    end
+  end
+
+  def destroy
+    @question = Question.find(params[:id]).destroy
+    flash[:success] = "Question deleted"
+    if @question.destroyed?
+      render json: {}, status: :no_content
     else
       render json: @question.errors, status: :bad_request
     end

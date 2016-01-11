@@ -4,13 +4,29 @@
     startTime = new Date(startTimeISOString)
     startTime.toString()
 
+  handleDelete: (e) ->
+    self = @
+    q_id = @props.question.id
+
+    $.ajax({
+      url: "/questions/#{q_id}",
+      type: 'DELETE',
+      data: { id: q_id },
+      success: (data) ->
+        self.props.handleDeleteQuestion q_id
+    })
+
   render: ->
-    R = React.DOM
-    R.tr null,
-      R.td null,
-        R.a href: "#{@props.path}/#{@props.question.id}", @props.question.title
-      R.td null, @props.question.content
-      R.td null, @props.replies
-      R.td null, @props.top
-      R.td null, @props.question.views
-      R.td null, @convertTime(@props.question.created_at)
+    {tr, td, a, div} = React.DOM
+    tr null,
+      td null,
+        a href: "#{@props.path}/#{@props.question.id}", @props.question.title
+      td null, @props.question.content
+      td null, @props.replies
+      td null, @props.top
+      td null, @props.question.views
+      td null, @convertTime(@props.question.created_at)
+      td null,
+        div
+          className: 'btn-delete glyphicon glyphicon-remove'
+          onClick: @handleDelete

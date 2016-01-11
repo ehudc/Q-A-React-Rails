@@ -16,11 +16,17 @@
     @state.title && @state.content
 
   handleSubmit: (e) ->
+    self = @
     e.preventDefault()
-    $.post '', { question: @state }, (data) =>
-      @props.handleNewQuestion data
-      @setState @getInitialState()
-    , 'JSON'
+
+    $.ajax({
+      url: "/questions",
+      type: 'POST',
+      data: { question: @state },
+      success: (data) ->
+        self.props.handleNewQuestion data
+        self.setState self.getInitialState()
+    })
 
   render: ->
     R = React.DOM

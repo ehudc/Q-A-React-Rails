@@ -13,6 +13,13 @@
     questions = @state.questions.concat([q])
     @setState questions: questions
 
+  removeQuestion: (q_id) ->
+    for key, value of @state.questions
+      if value.id == q_id
+        @state.questions.splice(key, 1)
+
+    @setState questions: @state.questions
+
   getSuggestions: (input) ->
 #    No score for words yet
     existing = []
@@ -45,7 +52,6 @@
     max
 
   render: ->
-    console.log(@props.questionsPath)
     R = React.DOM
     R.div
       className: 'questions'
@@ -81,6 +87,7 @@
           R.tbody null,
             for question in @state.questions by -1
               React.createElement Question,
+                handleDeleteQuestion: @removeQuestion,
                 key: question.id,
                 question: question,
                 path: @state.path,

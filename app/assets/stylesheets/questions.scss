@@ -20,4 +20,10 @@
   button.btn.btm-primary {
     width: 50%;
   }
+
+  .btn-delete {
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }
